@@ -4,24 +4,31 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "tsx src/seed.ts && tsx src/index.ts --transport http",
+    "start:agent": "tsx src/agent.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.96.0",
+    "@google/genai": "^2.3.0",
     "@modelcontextprotocol/sdk": "^1.29.0",
+    "@types/express": "^5.0.6",
     "axios": "^1.16.1",
     "better-sqlite3": "^12.10.0",
     "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "googleapis": "^171.4.0",
     "nodemailer": "^8.0.7",
     "twilio": "^6.0.2",
+    "untun": "^0.1.3",
     "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^25.7.0",
+    "@types/nodemailer": "^8.0.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.22.0",
     "typescript": "^6.0.3"

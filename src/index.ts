@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import "./patch-stdout.js";
 import * as dotenv from "dotenv";
 import path from "path";

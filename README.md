@@ -1,5 +1,10 @@
 # 🌐 EventsOrg MCP: Autonomous AI Event Manager
 
+![MCP Server](https://img.shields.io/badge/MCP-Server-blue)
+![AI Agent](https://img.shields.io/badge/AI-Agent-green)
+![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178c6)
+![License](https://img.shields.io/badge/License-ISC-yellow)
+
 An open-source **Model Context Protocol (MCP)** server and background autonomous agent designed to run the logistics of live events. 
 
 EventsOrg MCP gives LLMs (like Claude and Gemini) the "hands" to read live event data, reassign volunteers, cancel missing vendors, and communicate with staff via physical SMS messages.
@@ -46,7 +51,7 @@ You will need API keys for:
 - [Google Gemini](https://aistudio.google.com/) (For the autonomous agent)
 
 ### Environment Variables
-Since there is no `.env.example` in the codebase, here are all the environment variables you need to define in your `.env` file (or Railway dashboard) before starting the server:
+Copy the `.env.example` file to `.env` and configure your API keys before starting the server. Alternatively, if deploying to a platform like Railway, add these directly to your dashboard:
 
 ```env
 # AI Models
@@ -75,17 +80,41 @@ GOOGLE_SHEET_ID=your_google_sheet_id
 GOOGLE_SERVICE_ACCOUNT_JSON='{ "type": "service_account", ... }'
 ```
 
-### Local Setup
-1. Clone the repository and run `npm install`.
-2. Copy `.env.example` to `.env` and fill in your keys.
-3. Add the server to your `claude_desktop_config.json`:
+### 1. Using with Claude Desktop (Easiest)
+Since the server is published to NPM, you can run it instantly without cloning the repository.
+
+1. Open your `claude_desktop_config.json` file.
+2. Add the following configuration, inserting your own API keys in the `env` block:
    ```json
-   "grid-event-manager": {
-     "command": "npx",
-     "args": ["tsx", "/absolute/path/to/EventsOrg-MCP/src/index.ts"]
+   {
+     "mcpServers": {
+       "eventsorg-mcp": {
+         "command": "npx",
+         "args": ["-y", "eventsorg-mcp"],
+         "env": {
+           "TWILIO_ACCOUNT_SID": "your_twilio_sid",
+           "TWILIO_AUTH_TOKEN": "your_twilio_token",
+           "TWILIO_PHONE_NUMBER": "+1234567890",
+           "GOOGLE_API_KEY": "your_gemini_api_key"
+         }
+       }
+     }
    }
    ```
-4. Open Claude Desktop and start managing your event!
+3. Restart Claude Desktop and start managing your event!
+
+### 2. Standalone API Server (SSE)
+You can run the server directly from your terminal over HTTP without cloning the codebase:
+```bash
+npx -y eventsorg-mcp --transport http
+```
+*(Ensure you have your environment variables set in your terminal before running).*
+
+### 3. Developer Setup (Cloning)
+If you want to modify the code or run the autonomous background agent (`agent.ts`):
+1. Clone the repository and run `npm install`.
+2. Copy `.env.example` to `.env` and fill in your keys.
+3. Run `npm run start` (for the API) or `npm run start:agent` (for the autonomous worker).
 
 ### Cloud Deployment (Railway)
 If you want to host this publicly so an AI can manage it 24/7 in the cloud:
@@ -121,3 +150,10 @@ This MCP server exposes over 20+ tools to give your AI full operational control 
 - 🔍 **Core Operations:** (`get_event_summary`, `reassign_volunteer`, `cancel_vendor_slot`, `escalate_to_coordinator`, `move_zone_indoors`)
 
 *(Note: This is just a highlight! The server includes many more granular tools for managing incidents, checking in vendors, and querying exact database state.)*
+
+---
+
+## 📄 License
+
+This project is licensed under the [ISC License](LICENSE).
+

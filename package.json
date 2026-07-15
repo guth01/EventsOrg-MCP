@@ -1,14 +1,29 @@
 {
-  "name": "grid-7.0",
+  "name": "eventsorg-mcp",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "An open-source Model Context Protocol (MCP) server and background autonomous agent designed to run the logistics of live events.",
+  "main": "build/index.js",
+  "type": "module",
+  "bin": {
+    "eventsorg-mcp": "build/index.js"
+  },
+  "files": [
+    "build"
+  ],
   "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
     "start": "tsx src/seed.ts && tsx src/index.ts --transport http",
     "start:agent": "tsx src/agent.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "ai",
+    "agent",
+    "twilio"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {

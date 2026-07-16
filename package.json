@@ -1,6 +1,6 @@
 {
   "name": "eventsorg-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An open-source Model Context Protocol (MCP) server and background autonomous agent designed to run the logistics of live events.",
   "main": "build/index.js",
   "type": "module",

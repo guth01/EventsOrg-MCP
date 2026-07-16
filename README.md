@@ -1,5 +1,6 @@
 # 🌐 EventsOrg MCP: Autonomous AI Event Manager
 
+![NPM Version](https://img.shields.io/npm/v/eventsorg-mcp?color=red)
 ![MCP Server](https://img.shields.io/badge/MCP-Server-blue)
 ![AI Agent](https://img.shields.io/badge/AI-Agent-green)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178c6)
@@ -80,11 +81,11 @@ GOOGLE_SHEET_ID=your_google_sheet_id
 GOOGLE_SERVICE_ACCOUNT_JSON='{ "type": "service_account", ... }'
 ```
 
-### 1. Using with Claude Desktop (Easiest)
-Since the server is published to NPM, you can run it instantly without cloning the repository.
+### 1. Using with Claude Desktop (stdio mode)
+The easiest way to use this is as a local plugin for Claude. Since it's published to NPM, you don't even need to clone the repo.
 
 1. Open your `claude_desktop_config.json` file.
-2. Add the following configuration, inserting your own API keys in the `env` block:
+2. Add this configuration (inserting your own API keys):
    ```json
    {
      "mcpServers": {
@@ -101,14 +102,31 @@ Since the server is published to NPM, you can run it instantly without cloning t
      }
    }
    ```
-3. Restart Claude Desktop and start managing your event!
+3. Restart Claude Desktop. 
 
-### 2. Standalone API Server (SSE)
-You can run the server directly from your terminal over HTTP without cloning the codebase:
-```bash
-npx -y eventsorg-mcp --transport http
-```
-*(Ensure you have your environment variables set in your terminal before running).*
+**Example usage:** Open Claude and say, *"My security vendor just called and said they are 30 minutes late. Can you update the system and text the outdoor zone volunteers?"* Claude will instantly talk to your NPM package in the background, update the local database, and send the Twilio texts.
+
+### 2. Standalone Cloud API (SSE mode)
+If you want to build a custom web app or allow remote agents (like LangChain or custom scripts) to manage your event over the internet:
+
+1. Rent a cloud server and run the package in HTTP mode:
+   ```bash
+   npx -y eventsorg-mcp --transport http
+   ```
+2. The server spins up and listens at your URL (e.g., `https://your-server.com/sse`).
+3. Now, in your custom app, you can connect remotely using the official MCP SDK:
+   ```javascript
+   import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+   import { SSEClientTransport } from "@modelcontextprotocol/sdk/client/sse.js";
+   
+   const transport = new SSEClientTransport("https://your-server.com/sse");
+   const mcpClient = new Client();
+   await mcpClient.connect(transport);
+   
+   // Trigger tools remotely over the internet!
+   await mcpClient.callTool({ name: "get_event_summary", arguments: {} });
+   ```
+*(Note: Ensure you have your environment variables set in your terminal or cloud dashboard before running the npx command).*
 
 ### 3. Developer Setup (Cloning)
 If you want to modify the code or run the autonomous background agent (`agent.ts`):

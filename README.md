@@ -1,5 +1,6 @@
 # 🌐 EventsOrg MCP: Autonomous AI Event Manager
 
+[![MCP Registry](https://img.shields.io/badge/MCP_Registry-Listed-5c5c5c)](https://registry.modelcontextprotocol.io/)
 ![NPM Version](https://img.shields.io/npm/v/eventsorg-mcp?color=red)
 ![MCP Server](https://img.shields.io/badge/MCP-Server-blue)
 ![AI Agent](https://img.shields.io/badge/AI-Agent-green)

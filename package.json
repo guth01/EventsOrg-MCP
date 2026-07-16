@@ -1,6 +1,11 @@
 {
   "name": "eventsorg-mcp",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "mcpName": "io.github.guth01/eventsorg-mcp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guth01/EventsOrg-MCP.git"
+  },
   "description": "An open-source Model Context Protocol (MCP) server and background autonomous agent designed to run the logistics of live events.",
   "main": "build/index.js",
   "type": "module",

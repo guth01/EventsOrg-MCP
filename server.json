@@ -1,0 +1,50 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.guth01/eventsorg-mcp",
+  "description": "Autonomous MCP server and background agent for managing live event logistics.",
+  "repository": {
+    "url": "https://github.com/guth01/EventsOrg-MCP",
+    "source": "github"
+  },
+  "version": "1.0.2",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "eventsorg-mcp",
+      "version": "1.0.2",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "description": "Your Google Gemini API Key",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true,
+          "name": "GOOGLE_API_KEY"
+        },
+        {
+          "description": "Your Twilio Account SID",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true,
+          "name": "TWILIO_ACCOUNT_SID"
+        },
+        {
+          "description": "Your Twilio Auth Token",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true,
+          "name": "TWILIO_AUTH_TOKEN"
+        },
+        {
+          "description": "Your Twilio Phone Number (+1234567890)",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": false,
+          "name": "TWILIO_PHONE_NUMBER"
+        }
+      ]
+    }
+  ]
+}

@@ -52,7 +52,7 @@ You will need API keys for:
 - [Google Gemini](https://aistudio.google.com/) (For the autonomous agent)
 
 ### Environment Variables
-Copy the `.env.example` file to `.env` and configure your API keys before starting the server. Alternatively, if deploying to a platform like Railway, add these directly to your dashboard:
+Copy the `.env.example` file to `.env` and configure your API keys before starting the server. Alternatively, if deploying to a cloud platform (like Render, AWS, or Railway), add these directly to your dashboard:
 
 ```env
 # AI Models
@@ -134,13 +134,13 @@ If you want to modify the code or run the autonomous background agent (`agent.ts
 2. Copy `.env.example` to `.env` and fill in your keys.
 3. Run `npm run start` (for the API) or `npm run start:agent` (for the autonomous worker).
 
-### Cloud Deployment (Railway)
-If you want to host this publicly so an AI can manage it 24/7 in the cloud:
+### Cloud Deployment
+If you want to host this publicly so an AI can manage it 24/7 in the cloud, you can deploy this on any Node.js hosting provider (like Render, AWS, Railway, Heroku, or Fly.io):
 1. Push this code to your own GitHub repo.
-2. Go to **Railway.app**, create a new project, and deploy from GitHub.
-3. Paste your `.env` variables into the Railway dashboard.
-4. Generate a public URL in Railway and add it as `PUBLIC_URL` in your variables.
-5. In your Twilio console, point your phone number's webhook to `https://<YOUR-RAILWAY-URL>/webhook/sms`.
+2. Connect your repository to your cloud provider and deploy it.
+3. Paste your `.env` variables into your cloud provider's dashboard.
+4. Ensure your provider gives you a public URL (e.g., `https://my-events.onrender.com`), and set this as the `PUBLIC_URL` environment variable.
+5. In your Twilio console, point your phone number's webhook to `https://<YOUR-PUBLIC-URL>/webhook/sms`.
 
 *(Note: The `npm start` command will automatically seed the database with fake "sample event" data. If you are running a real event, remove `tsx src/seed.ts` from the `start` script in `package.json`!)*
 

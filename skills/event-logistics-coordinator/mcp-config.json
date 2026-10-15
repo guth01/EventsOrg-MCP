@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "eventsorg-mcp": {
+      "command": "npx",
+      "args": ["-y", "eventsorg-mcp"],
+      "env": {
+        "GOOGLE_API_KEY": "YOUR_GEMINI_API_KEY",
+        "TWILIO_ACCOUNT_SID": "YOUR_TWILIO_SID",
+        "TWILIO_AUTH_TOKEN": "YOUR_TWILIO_TOKEN",
+        "TWILIO_PHONE_NUMBER": "+1234567890",
+        "OPENWEATHER_API_KEY": "YOUR_OPENWEATHER_KEY",
+        "GOOGLE_MAPS_API_KEY": "YOUR_MAPS_KEY",
+        "COORDINATOR_EMAIL": "coordinator@example.com"
+      }
+    }
+  }
+}

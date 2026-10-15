@@ -40,6 +40,10 @@ By starting the server with the `--transport http` flag, you turn the local serv
 ### 3. The Autonomous Virtual Coordinator
 You don't even need a chat window. By running the included `agent.ts` script, a Gemini-powered worker wakes up every 5 minutes, checks the database for anomalies (missing vendors, safety incidents, weather alerts), fixes them, and texts the staff—completely autonomously.
 
+### 4. Packaged Agent Skill (`SKILL.md`)
+EventsOrg is packaged as a standard Agent Skill compliant with the open `SKILL.md` specification and listed on marketplaces like **Agensi.io**. It provides AI agents (Claude Code, Cursor, Copilot) with explicit SOPs, incident triage rules, and real-time SMS dispatch protocols out of the box.
+* *Package folder:* `skills/event-logistics-coordinator/`
+
 ---
 
 ## 🚀 How to Deploy Your Own Event
